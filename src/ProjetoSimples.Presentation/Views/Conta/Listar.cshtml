@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProjetoSimples.Presentation.ViewModels.ContaViewModel.ListarViewModel>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Listar"];
+}
+<div class="container-conteúdo-principal">
+
+    <h4>@Localizer["Lista de usuários cadastrados"]</h4>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CriadoEm)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CriadoEm)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

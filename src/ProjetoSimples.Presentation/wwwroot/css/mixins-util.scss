@@ -1,0 +1,217 @@
+﻿/* 
+    Retirado de http://blog.caelum.com.br/10-mixins-sass-que-voce-deveria-usar-em-seus-projetos/
+    Esse e outros mais no github: https://github.com/engageinteractive/core/blob/master/src/scss/utility/_mixins.scss
+*/
+
+/* 1 - Centralizar elementos horizontalmente */
+@mixin push--auto {
+    margin: {
+        left: auto;
+        right: auto;
+    }
+}
+
+/*2 – Pseudo-elementos usados sempre junto ao ::before e o ::after*/ 
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+/*  Exemplo de uso:
+div::after {
+    @include pseudo;
+    top: -1rem;
+    left: -1rem;
+    width: 1rem;
+    height: 1rem;
+}*/
+
+
+/*3 – Proporção responsiva para criar elementos escaláveis (normalmente imagens / backgrounds) que mantenham a proporção.*/ 
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    }
+    @else {
+        padding-top: $padding;
+    }
+}
+
+/* Ex: A `div` teria uma proporção comumente utilizada por vídeos (16:9), como do Youtube:
+div {
+    @include responsive-ratio(16,9);
+}*/
+
+
+/*4 – Cria triângulo sem precisar de img*/ 
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false) {
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+
+    @if $round {
+        border-radius: 3px;
+    }
+
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    }
+    @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    }
+    @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    }
+    @else if $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+
+/*5 - Define fallback para fonte (já incluída)*/
+@mixin font-source-sans($size: false, $colour: false, $weight: false, $lh: false) {
+    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+
+    @if $size {
+        font-size: $size;
+    }
+
+    @if $colour {
+        color: $colour;
+    }
+
+    @if $weight {
+        font-weight: $weight;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+}
+
+
+/*6 – Placeholders*/ 
+@mixin input-placeholder {
+    &.placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+/*Exemplo de uso:
+input,
+textarea {
+    @include input-placeholder {
+        color: $grey;
+    }
+}*/
+
+
+/*7 – Media queries (pode usar diretamente o valor ou os breakpoints)*/
+$breakpoints: (
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+);
+
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+
+        @if $type == max {
+            $width: $width - 1px;
+        }
+
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+/*Ex: `padding` e `font-size` aumentando quando a largura da tela fica maior que 1024px.
+.site-header {
+    padding: 2rem;
+    font-size: 1.8rem;
+
+    @include mq('tablet-wide') {
+        padding-top: 4rem;
+        font-size: 2.4rem;
+    }
+}*/
+
+
+/*8 – Z-index É função, não mixins. Importar antes de qualquer arquivo que use z-index*/ 
+@function z($name) {
+    @if index($z-indexes, $name) {
+        @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+    }
+    @else {
+        @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+        @return null;
+    }
+}
+
+/* Valores de exemplo: $z-indexes: ( "outdated-browser", "modal", "site-header", "page-wrapper", "site-footer" );
+
+Exemplo de uso:
+.site-header {
+    z-index: z('site-header');
+}*/
+
+
+/*9 – Ligar a aceleração de hardware para alguma animação*/ 
+@mixin hardware($backface: true, $perspective: 1000) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+
+    perspective: $perspective;
+}
+
+
+/*10 – Trunca um elemento*/ 
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
