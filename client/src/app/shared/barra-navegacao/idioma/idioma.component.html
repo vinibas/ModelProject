@@ -1,0 +1,12 @@
+
+<li class="nav-item">
+
+  <form asp-action="SetLanguage" asp-controller="Home" id="formLanguage"
+        asp-route-returnUrl="@Context.Request.Path" method="post" class="form-inline">
+      <label for="selIdioma" class="nav-link">Idioma: </label>
+      <select name="culture" [value]="pt-BR" class="form-control" id="selIdioma" (change)="this.selIdiomaChange($event)">
+        <option *ngFor="let option of this.getIdiomas()" value="option.value">{{ option.label }}</option>
+      </select>
+  </form>
+
+</li>

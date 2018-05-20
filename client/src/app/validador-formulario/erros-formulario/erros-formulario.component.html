@@ -1,0 +1,7 @@
+
+<div class="alert alert-danger" *ngIf="erros">
+  <h5 id="msgRetorno">{{ this.titulo }}</h5>
+  <ul class="list-unstyled">
+    <li *ngFor="let erro of erros">{{ erro }}</li>
+  </ul>
+</div>

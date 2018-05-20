@@ -6,12 +6,19 @@ Criei este projeto como uma pequena demonstração da minha codificação.
 Criei uma versão inicial utilizando apenas um projeto com uma arquitetura simples.
 Pretendo posteriormente aprimorar o projeto, com uma melhor divisão em camadas, testes de unidade e de interface, mais funcionalidades e uso de outras tecnologias.
 
+## SPA (Angular) & MPA (Asp.net MVC)
+
+O ProjetoSimples atualmente possui duas diferentes formas de implementação front-end: Asp.net MVC e Angular.
+Ambas compartilham o mesmo projeto. Para escolher entre MVC e Rest API, altere a chave "UseWebApi" no appsettings.json.
+Pode ser que um projeto tenha funcionalidade que o outro ainda não possui. Estou atualizando e evoluindo ambos aos poucos.
+
 ## Tecnologias implementadas
 
-O sistema foi construído em ASP.NET CORE 2.0 utilizando C#.  
+O sistema foi construído em ASP.NET CORE 2.0, utilizando C#, e em Angular.
 Segue abaixo um resumo das princiais tecnologías utilizadas:
 
 * ASP.NET CORE MVC 2
+* Angular 5
 * C#
 * Identity
 * Entity Framework

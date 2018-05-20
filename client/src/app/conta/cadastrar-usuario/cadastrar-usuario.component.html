@@ -1,0 +1,28 @@
+<div class="container-conteúdo-principal">
+
+  <h4>Cadastrar novo usuário</h4>
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+      <form novalidate (ngSubmit)="enviar()" [formGroup]="formGroup">
+        <app-erros-formulario [erros]="errosFormulario"></app-erros-formulario>
+
+        <div class="form-group">
+          <label for="txtNome" class="control-label">Nome</label>
+          <input type="text" name="nome" id="txtNome" formControlName="nome" class="form-control" />
+          <app-erros-campo nome="nome"></app-erros-campo>
+        </div>
+
+        <div class="form-group">
+          <label for="txtSenha" class="control-label">Senha</label>
+          <input type="password" name="senha" id="txtSenha" formControlName="senha" class="form-control" />
+          <app-erros-campo nome="senha"></app-erros-campo>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Concluir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

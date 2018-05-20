@@ -1,0 +1,23 @@
+<ng-container [ngSwitch]="authenticationService.usuarioEstaLogado">
+
+  <li dropdown *ngSwitchCase="false" class="nav-item dropdown">
+    <a dropdownToggle class="nav-link dropdown-toggle" href (click)="false" data-toggle="dropdown">
+      Conta
+    </a>
+    <div *dropdownMenu class="dropdown-menu">
+      <a class="dropdown-item" routerLink="/Conta/Login">Entrar</a>
+      <a class="dropdown-item" routerLink="/NovoUsuario">Cadastrar</a>
+    </div>
+  </li>
+
+  <li dropdown *ngSwitchCase="true" class="nav-item dropdown">
+    <a dropdownToggle class="nav-link dropdown-toggle" href (click)="false" data-toggle="dropdown">
+      Olá {{ authenticationService.nomeUsuarioLogado }}
+    </a>
+    <div *dropdownMenu class="dropdown-menu">
+      <a class="dropdown-item" routerLink="/Conta/Listar">Listar usuários</a>
+      <input type="button" class="btn btn-link dropdown-item" value="Sair" (click)="logout()" />
+    </div>
+  </li>
+
+</ng-container>

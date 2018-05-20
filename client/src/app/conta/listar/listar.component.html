@@ -1,0 +1,30 @@
+
+<div class="container-conteúdo-principal">
+
+  <h4>Lista de usuários cadastrados</h4>
+  <hr>
+  <app-erros-formulario [erros]="errosFormulario"></app-erros-formulario>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Nome
+        </th>
+        <th>
+          Criado em
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>
+          {{ usuario.nome }}
+        </td>
+        <td>
+          {{ usuario.criadoEm.getDate() + '/' + (usuario.criadoEm.getMonth() + 1) + '/' + usuario.criadoEm.getFullYear() }}
+          {{ usuario.criadoEm.getHours() + ':' + usuario.criadoEm.getMinutes()   }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
