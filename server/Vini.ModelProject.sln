@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoSimples.Presentation", "src\ProjetoSimples.Presentation\ProjetoSimples.Presentation.csproj", "{D04FA0A0-8A89-41C2-AA90-036A61EC9E45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-MVC", "1-MVC", "{8DCB415D-B899-46DC-855A-F9D154647D34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-WebApi", "2-WebApi", "{17C3D549-B6A2-41A2-9944-42601BCDB24A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Application", "3-Application", "{B3C1310E-9DB1-4D81-8331-5100A39E7098}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Domain", "4-Domain", "{7C2AE68D-1140-4041-82A2-A57B0FC55AEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Infra", "5-Infra", "{8D5AEBB8-44F2-41DA-82FC-606FF8EA2C6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1-Data", "5.1-Data", "{175D621F-0817-44FA-802E-7725CC2057BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vini.ModelProject.Presentation", "src\Vini.ModelProject.Presentation\Vini.ModelProject.Presentation.csproj", "{86E033BC-7777-4C00-9868-05CC0A49A423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vini.ModelProject.Api", "src\Vini.ModelProject.Api\Vini.ModelProject.Api.csproj", "{A4807347-C750-4566-B296-169C2857DC37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vini.ModelProject.Application", "src\Vini.ModelProject.Application\Vini.ModelProject.Application.csproj", "{2072E1C2-1F18-493B-97CC-1CFF12783AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vini.ModelProject.Domain", "src\Vini.ModelProject.Domain\Vini.ModelProject.Domain.csproj", "{C318D429-2DD9-4BB2-AC85-172C6D49A95E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vini.ModelProject.Infra.Data", "src\Vini.ModelProject.Infra.Data\Vini.ModelProject.Infra.Data.csproj", "{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D04FA0A0-8A89-41C2-AA90-036A61EC9E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D04FA0A0-8A89-41C2-AA90-036A61EC9E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D04FA0A0-8A89-41C2-AA90-036A61EC9E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D04FA0A0-8A89-41C2-AA90-036A61EC9E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E033BC-7777-4C00-9868-05CC0A49A423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E033BC-7777-4C00-9868-05CC0A49A423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E033BC-7777-4C00-9868-05CC0A49A423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E033BC-7777-4C00-9868-05CC0A49A423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4807347-C750-4566-B296-169C2857DC37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4807347-C750-4566-B296-169C2857DC37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4807347-C750-4566-B296-169C2857DC37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4807347-C750-4566-B296-169C2857DC37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2072E1C2-1F18-493B-97CC-1CFF12783AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2072E1C2-1F18-493B-97CC-1CFF12783AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2072E1C2-1F18-493B-97CC-1CFF12783AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2072E1C2-1F18-493B-97CC-1CFF12783AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C318D429-2DD9-4BB2-AC85-172C6D49A95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C318D429-2DD9-4BB2-AC85-172C6D49A95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C318D429-2DD9-4BB2-AC85-172C6D49A95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C318D429-2DD9-4BB2-AC85-172C6D49A95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{175D621F-0817-44FA-802E-7725CC2057BD} = {8D5AEBB8-44F2-41DA-82FC-606FF8EA2C6A}
+		{86E033BC-7777-4C00-9868-05CC0A49A423} = {8DCB415D-B899-46DC-855A-F9D154647D34}
+		{A4807347-C750-4566-B296-169C2857DC37} = {17C3D549-B6A2-41A2-9944-42601BCDB24A}
+		{2072E1C2-1F18-493B-97CC-1CFF12783AB4} = {B3C1310E-9DB1-4D81-8331-5100A39E7098}
+		{C318D429-2DD9-4BB2-AC85-172C6D49A95E} = {7C2AE68D-1140-4041-82A2-A57B0FC55AEC}
+		{72EC3C82-9C2E-41DA-AE0E-D71C95DBE078} = {175D621F-0817-44FA-802E-7725CC2057BD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89C785D1-824C-44EC-AAA9-B4D3D7ADCCB0}
+	EndGlobalSection
+EndGlobal
