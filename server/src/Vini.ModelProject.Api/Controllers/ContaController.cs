@@ -38,30 +38,60 @@ namespace Vini.ModelProject.Api.Controllers
             //_localizer = localizer;
         }
 
+        [HttpPost("cadastrar-usuario")]
+        public async Task<IActionResult> CadastrarUsuário([FromBody]CadastrarUsuárioViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return BadRequestModelStateInválida();
+
+            var erros = await _contaAppService.CadastrarUsuário(vm);
+
+            if (erros.Count == 0)
+            {
+                var nomeUsuário = await _contaAppService.ObterNomeDoUsuárioPorUserNameAsync(vm.Nome);
+                return OkUsuárioAutenticado(nomeUsuário);
+            }
+            else
+            {
+                foreach (var erro in erros)
+                    ModelState.AddModelError(string.Empty, erro);
+
+                return BadRequestModelStateInválida();
+            }
+        }
+
+        [HttpGet("listar")]
+        [Authorize]
+        public async Task<IActionResult> Listar()
+            => Ok(new
+                {
+                    success = true,
+                    data = await _contaAppService.ListarUsuáriosAsync(),
+                });
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginViewModel vm)
         {
             if (!ModelState.IsValid)
                 return BadRequestModelStateInválida();
 
-            var resultado = await _contaAppService.Login(vm);
+            var erros = await _contaAppService.LoginAsync(vm);
 
-            if (resultado.Count == 0)
+            if (erros.Count == 0)
             {
-                var user = await _userManager.FindByNameAsync(vm.Nome);
-                var usuário = await _usuárioRepository.ObterPorIdAsync(Guid.Parse(user.Id));
-
-                return OkUsuárioAutenticado(usuário);
+                var nomeUsuário = await _contaAppService.ObterNomeDoUsuárioPorUserNameAsync(vm.Nome);
+                return OkUsuárioAutenticado(nomeUsuário);
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Falha: Usuário ou senha incorretos!");
+                foreach (var erro in erros)
+                    ModelState.AddModelError(string.Empty, erro);
 
                 return BadRequestModelStateInválida();
             }
         }
 
-        private IActionResult OkUsuárioAutenticado(Usuário usuário)
+        private IActionResult OkUsuárioAutenticado(string nomeUsuário)
         {
             return Ok(new
             {
@@ -69,7 +99,7 @@ namespace Vini.ModelProject.Api.Controllers
                 data = new
                 {
                     tokenUsuarioLogado = GerarToken(),
-                    nomeUsuarioLogado = usuário.Nome
+                    nomeUsuarioLogado = nomeUsuário,
                 }
             });
         }
@@ -106,62 +136,11 @@ namespace Vini.ModelProject.Api.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await _contaAppService.LogoutAsync();
             return Ok(new
             {
                 success = true
             });
         }
-
-        [HttpGet("listar")]
-        [Authorize]
-        public async Task<IActionResult> Listar()
-        {
-            var usuários = await _usuárioRepository.ListarTodosAsync();
-            var listarVM = usuários.Select(u => new ListarViewModel { Id = u.Id, Nome = u.Nome, CriadoEm = u.CriadoEm });
-
-            return Ok(new
-            {
-                success = true,
-                data = usuários
-            });
-        }
-
-        [HttpPost("cadastrar-usuario")]
-        public async Task<IActionResult> CadastrarUsuário([FromBody]CadastrarUsuárioViewModel vm)
-        {
-            if (!ModelState.IsValid)
-                return BadRequestModelStateInválida();
-
-            var appUser = new ApplicationUser() { UserName = vm.Nome };
-
-            var resultado = await _userManager.CreateAsync(appUser, vm.Senha);
-
-            if (resultado.Succeeded)
-            {
-                var usuário = new Usuário { Id = new Guid(appUser.Id), Nome = vm.Nome, CriadoEm = DateTime.Now };
-
-                await _usuárioRepository.AdicionarAsync(usuário);
-                await _signInManager.SignInAsync(appUser, false);
-
-                return OkUsuárioAutenticado(usuário);
-            }
-            else
-            {
-                foreach (var error in resultado.Errors)
-                {
-                    var descrição = error.Description;
-
-                    if (error.Code == "DuplicateUserName")
-                        descrição = _localizer["O nome de usuário escolhido não está disponível. Escolha outro."];
-
-                    ModelState.AddModelError(string.Empty, descrição);
-
-                }
-
-                return BadRequestModelStateInválida();
-            }
-        }
-
     }
 }

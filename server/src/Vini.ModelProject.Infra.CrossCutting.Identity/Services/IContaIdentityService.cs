@@ -11,5 +11,6 @@ namespace Vini.ModelProject.Infra.CrossCutting.Identity.Services
         Task SignInAsync(UsuárioIdentity usuário);
         Task<IList<string>> PasswordSignInAsync(string nomeUsuário, string senha);
         Task SignOutAsync();
+        Task<UsuárioIdentity> FindByNameAsync(string nomeUsuário);
     }
 }

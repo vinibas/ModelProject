@@ -9,5 +9,6 @@ namespace Vini.ModelProject.Domain.Interfaces.Services
     {
         Task<IEnumerable<Usuário>> ListarTodosAsync();
         Task AdicionarAsync(Usuário usuário);
+        Task<string> ObterPorIdAsync(Guid id);
     }
 }
