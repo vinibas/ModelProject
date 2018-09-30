@@ -1,0 +1,31 @@
+﻿@model string
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@if (Model == null)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            @Localizer["Conta"]
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-controller="Conta" asp-action="Login">@Localizer["Entrar"]</a>
+            <a class="dropdown-item" asp-controller="Conta" asp-action="CadastrarUsuário">@Localizer["Cadastrar"]</a>
+
+</div>
+    </li>
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+            @Localizer["Olá"] @Model
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-controller="Conta" asp-action="Listar">@Localizer["Listar usuários"]</a>
+            <form asp-action="Logout" asp-controller="Conta">
+                <input type="submit" class="btn btn-link dropdown-item" value="@Localizer["Sair"]" />
+            </form>
+        </div>
+    </li>
+}

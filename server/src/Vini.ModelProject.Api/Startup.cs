@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Vini.ModelProject.Infra.CrossCutting.DI;
 
 namespace Vini.ModelProject.Api
 {
@@ -42,30 +51,8 @@ namespace Vini.ModelProject.Api
                 .AddDefaultTokenProviders();
 
 
-            services.AddTransient<UsuárioRepository>();
-
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            ConfigureServicesToApi(services);
-
-            // services.AddMvc(options => options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter()));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                options.DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR");
-
-                options.SupportedCultures =
-                options.SupportedUICultures = new[]
-                {
-                    new CultureInfo("pt-BR"),
-                    new CultureInfo("es")
-                };
-            });
-        }
-
-        public void ConfigureServicesToApi(IServiceCollection services)
-        {
             services
                 .AddAuthentication(options =>
                 {
@@ -92,12 +79,29 @@ namespace Vini.ModelProject.Api
                 });
 
             services.AddCors();
+
+            services.AddMvc(options => options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter()))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR");
+
+                options.SupportedCultures =
+                options.SupportedUICultures = new[]
+                {
+                    new CultureInfo("pt-BR"),
+                    new CultureInfo("es")
+                };
+            });
+
+            NativeInjectorBootstraper.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var locOptions = app.ApplicationServices.GetService<Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions>>();
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(locOptions.Value);
 
             app.UseCors(p => p
@@ -109,9 +113,7 @@ namespace Vini.ModelProject.Api
             app.UseAuthentication();
 
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
             app.UseMvc();
         }
