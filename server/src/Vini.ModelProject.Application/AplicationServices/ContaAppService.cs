@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Localization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Vini.ModelProject.Application.Interfaces;
 using Vini.ModelProject.Application.ViewModels;
@@ -24,7 +21,7 @@ namespace Vini.ModelProject.Application.AplicationServices
         public ContaAppService(
             IUsuárioService usuárioRepository,
             IContaIdentityService contaIdentityService)
-            //IStringLocalizer<ContaController> localizer)
+        //IStringLocalizer<ContaController> localizer)
         {
             _usuárioService = usuárioRepository;
             this._contaIdentityService = contaIdentityService;
@@ -66,10 +63,25 @@ namespace Vini.ModelProject.Application.AplicationServices
             return erros;
         }
 
-        public async Task<IList<string>> Login(LoginViewModel vm)
+        public async Task<IList<string>> LoginAsync(LoginViewModel vm)
             => await _contaIdentityService.PasswordSignInAsync(vm.Nome, vm.Senha);
 
         public async void Logout()
             => await _contaIdentityService.SignOutAsync();
+
+        public async Task<string> ObterNomeDoUsuárioPorUserNameAsync(string userName)
+        {
+            var user = await _contaIdentityService.FindByNameAsync(userName);
+            return (await this._usuárioService.ObterPorIdAsync(Guid.Parse(user.Id)));
+        }
+
+        public async Task LogoutAsync()
+            => await _contaIdentityService.SignOutAsync();
+
+        public async Task<IEnumerable<ListarViewModel>> ListarUsuáriosAsync()
+        {
+            var usuários = await _usuárioService.ListarTodosAsync();
+            return usuários.Select(u => new ListarViewModel { Id = u.Id, Nome = u.Nome, CriadoEm = u.CriadoEm });
+        }
     }
 }

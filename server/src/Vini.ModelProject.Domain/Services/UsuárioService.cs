@@ -28,5 +28,8 @@ namespace Vini.ModelProject.Domain.Services
         {
             return await _usuárioService.ListarTodosAsync();
         }
+
+        public async Task<string> ObterPorIdAsync(Guid id)
+            => await _usuárioService.ObterPorIdAsync(id);
     }
 }

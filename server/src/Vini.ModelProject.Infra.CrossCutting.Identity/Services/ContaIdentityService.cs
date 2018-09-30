@@ -61,5 +61,8 @@ namespace Vini.ModelProject.Infra.CrossCutting.Identity.Services
 
         public async Task SignOutAsync()
             => await _signInManager.SignOutAsync();
+
+        public async Task<UsuárioIdentity> FindByNameAsync(string nomeUsuário)
+            => await _userManager.FindByNameAsync(nomeUsuário);
     }
 }
