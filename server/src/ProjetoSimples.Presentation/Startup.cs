@@ -59,7 +59,7 @@ namespace ProjetoSimples.Presentation
             services.AddMvc(options => options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter()));
 
 
-                services.Configure<RequestLocalizationOptions>(options =>
+            services.Configure<RequestLocalizationOptions>(options =>
             {
                 options.DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR");
                 

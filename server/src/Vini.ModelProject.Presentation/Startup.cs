@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vini.ModelProject.Infra.CrossCutting.DI;
+using Vini.ModelProject.Infra.CrossCutting.Identity;
+using Vini.ModelProject.Infra.Data;
+using Vini.ModelProject.Presentation.Configurations;
 
 namespace Vini.ModelProject.Presentation
 {
@@ -27,30 +30,19 @@ namespace Vini.ModelProject.Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureData(Configuration.GetConnectionString("DefaultConnection"));
+
+            services.ConfigureIdentity();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 3;
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
+            services.RegisterServices();
 
-                options.SignIn.RequireConfirmedEmail = false;
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-
-            services.AddTransient<UsuárioRepository>();
-
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddLocalizationCustom();
 
             services.ConfigureApplicationCookie(options =>
                 options.LoginPath = options.LogoutPath = "/Conta/Login");
@@ -64,33 +56,19 @@ namespace Vini.ModelProject.Presentation
                 options.Cookie.HttpOnly = true;
             });
 
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                options.DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR");
-
-                options.SupportedCultures =
-                options.SupportedUICultures = new[]
-                {
-                    new CultureInfo("pt-BR"),
-                    new CultureInfo("es")
-                };
-            });
-
             services.AddOptions();
 
             services.AddMvc(options => options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter()))
-                .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.SubFolder)
-                .AddDataAnnotationsLocalization()
+                .AddViewAndDataAnnotationToMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            NativeInjectorBootstraper.RegisterServices(services);
+            services.RegisterServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var locOptions = app.ApplicationServices.GetService<Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(locOptions.Value);
+            app.AddLocalizationToRequest();
 
             if (env.IsDevelopment())
             {
