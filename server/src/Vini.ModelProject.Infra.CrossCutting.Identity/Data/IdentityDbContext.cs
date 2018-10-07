@@ -5,12 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Vini.ModelProject.Infra.CrossCutting.Identity.Models;
 
 namespace Vini.ModelProject.Infra.CrossCutting.Identity.Data
 {
-    public class IdentityDbContext : IdentityDbContext<ApplicationUser>
+    public class IdentityDbContext : IdentityDbContext<UsuárioIdentity>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
             : base(options)
         {
         }

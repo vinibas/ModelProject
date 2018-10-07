@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Vini.ModelProject.Application\Vini.ModelProject.Application.csproj" />
     <ProjectReference Include="..\Vini.ModelProject.Infra.CrossCutting.DI\Vini.ModelProject.Infra.CrossCutting.DI.csproj" />
+    <ProjectReference Include="..\Vini.ModelProject.Infra.CrossCutting.Identity\Vini.ModelProject.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\Vini.ModelProject.Infra.Data\Vini.ModelProject.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
