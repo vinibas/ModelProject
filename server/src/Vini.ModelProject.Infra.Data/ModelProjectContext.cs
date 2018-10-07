@@ -10,6 +10,10 @@ namespace Vini.ModelProject.Infra.Data
     {
         public DbSet<Usuário> Usuário { get; set; }
 
+        public ModelProjectContext(DbContextOptions<ModelProjectContext> options) : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             DesabilitarCascadeOnDeleteDeTodasAsEntidades(modelBuilder);
