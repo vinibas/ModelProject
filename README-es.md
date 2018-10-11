@@ -1,4 +1,4 @@
-﻿# ProjetoSimples (Versión en portugués [aquí](README.md))
+# ProjetoSimples (Versão em português [aqui](README.md))
 
 He creado este proyecto como una pequeña demostración de mi codificación.
 Es una forma de demostrar tanto mi estilo como parte de mis conocimientos de forma práctica.
@@ -6,11 +6,17 @@ Es una forma de demostrar tanto mi estilo como parte de mis conocimientos de for
 He creado una versión inicial utilizando sólo un proyecto con una arquitectura sencilla.
 Pretendo posteriormente mejorar el proyecto, con una mejor división en capas, pruebas de unidad e interfaz, más funcionalidad y uso de otras tecnologías.
 
+## Desarrollo actual
+
+La versión que se encuentra actualmente en Master fue una versión que he creado de forma simplista: todo en un único proyecto, pocas clases, haciendo honor al nombre. Actualmente, estoy desarrollando una nueva versión, con separación en capas, siguiendo el DDD, como si fuera para un proyecto más grande. La versión todavía no está lista, pero si deseas consultar el estado, vea el Branch SeparandoEmProjetos.
+
 ## SPA (Angular) & MPA (Asp.net MVC)
 
 El ProjetoSimples actualmente poseé dos diferentes formas de implementación front-end: Asp.net MVC y Angular.
 Ambas compartem el mismo proyeto. Para eligir entre MVC y Rest API, cambie la clave "UseWebApi" en appsettings.json.
 Puode ser que un proyeto tenga funcionalidade que el otro todavía no posee. Estoy actualizando e evolucionando ambos a los pocos.
+
+No olvides de hacer un npm install en el proyecto Angular para instalar todas las dependencias, ni de hacer un Update-Database en el Package Manager Console para crear el Banco de Datos.
 
 ## Tecnologías implementadas
 
