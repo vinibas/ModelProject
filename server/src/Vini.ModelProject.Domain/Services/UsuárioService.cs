@@ -2,34 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Vini.ModelProject.Domain.Interfaces.Repositories;
 using Vini.ModelProject.Domain.Interfaces.Services;
 
 namespace Vini.ModelProject.Domain.Services
 {
     public class UsuárioService : IUsuárioService
     {
-        private readonly UsuárioService _usuárioService;
+        private readonly IUsuárioRepository _usuárioRepository;
 
-        public UsuárioService(UsuárioService usuárioService)
+        public UsuárioService(IUsuárioRepository usuárioRepository)
         {
-            this._usuárioService = usuárioService;
+            this._usuárioRepository = usuárioRepository;
         }
 
         public async Task AdicionarAsync(Usuário usuário)
         {
             //var erros = new List<string>();
 
-            await _usuárioService.AdicionarAsync(usuário);
+            await _usuárioRepository.AdicionarAsync(usuário);
             
             //return erros;
         }
 
         public async Task<IEnumerable<Usuário>> ListarTodosAsync()
         {
-            return await _usuárioService.ListarTodosAsync();
+            return await _usuárioRepository.ListarTodosAsync();
         }
 
-        public async Task<string> ObterPorIdAsync(Guid id)
-            => await _usuárioService.ObterPorIdAsync(id);
+        public async Task<Usuário> ObterPorIdAsync(Guid id)
+            => await _usuárioRepository.ObterPorIdAsync(id);
     }
 }

@@ -30,9 +30,11 @@ namespace Vini.ModelProject.Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureData(Configuration.GetConnectionString("DefaultConnection"));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.ConfigureIdentity();
+            services.ConfigureData(connectionString);
+
+            services.ConfigureIdentity(connectionString);
 
             services.Configure<CookiePolicyOptions>(options =>
             {

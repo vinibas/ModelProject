@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Vini.ModelProject.Application.ViewModels;
 
@@ -14,5 +15,7 @@ namespace Vini.ModelProject.Application.Interfaces
         Task<string> ObterNomeDoUsuárioPorUserNameAsync(string userName);
         Task LogoutAsync();
         Task<IEnumerable<ListarViewModel>> ListarUsuáriosAsync();
+        bool UsuárioEstáLogado(ClaimsPrincipal userClaimsPrincipal);
+        Task<string> ObterNomeDoUsuárioLogadoAsync(ClaimsPrincipal userClaimsPrincipal);
     }
 }

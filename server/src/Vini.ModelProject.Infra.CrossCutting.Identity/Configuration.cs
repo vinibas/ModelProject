@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,11 @@ namespace Vini.ModelProject.Infra.CrossCutting.Identity
 {
     public static class Configuration
     {
-        public static void ConfigureIdentity(this IServiceCollection services)
+        public static void ConfigureIdentity(this IServiceCollection services, string connectionString)
         {
+            services.AddDbContext<IdentityDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
             services.AddIdentity<UsuárioIdentity, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -23,7 +27,7 @@ namespace Vini.ModelProject.Infra.CrossCutting.Identity
 
                 options.SignIn.RequireConfirmedEmail = false;
             })
-                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddEntityFrameworkStores<Vini.ModelProject.Infra.CrossCutting.Identity.Data.IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
         }

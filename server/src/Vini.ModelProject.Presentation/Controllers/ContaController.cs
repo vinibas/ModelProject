@@ -41,10 +41,7 @@ namespace Vini.ModelProject.Presentation.Controllers
             var erros = await _contaAppService.CadastrarUsuário(vm);
 
             if (erros.Count == 0)
-            {
-                var nomeUsuário = await _contaAppService.ObterNomeDoUsuárioPorUserNameAsync(vm.Nome);
                 return RedirecionarParaHomeIndex();
-            }
             else
             {
                 foreach (var erro in erros)
