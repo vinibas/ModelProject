@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Vini.ModelProject.Infra.CrossCutting.Identity.Models;
@@ -64,5 +65,11 @@ namespace Vini.ModelProject.Infra.CrossCutting.Identity.Services
 
         public async Task<UsuárioIdentity> FindByNameAsync(string nomeUsuário)
             => await _userManager.FindByNameAsync(nomeUsuário);
+
+        public bool IsUserAuthenticated(ClaimsPrincipal userClaimsPrincipal)
+            => _signInManager.IsSignedIn(userClaimsPrincipal);
+
+        public string GetUserId(ClaimsPrincipal userClaimsPrincipal)
+            => _userManager.GetUserId(userClaimsPrincipal);
     }
 }

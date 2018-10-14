@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Vini.ModelProject.Infra.CrossCutting.DI\Vini.ModelProject.Infra.CrossCutting.DI.csproj" />
     <ProjectReference Include="..\Vini.ModelProject.Infra.CrossCutting.Identity\Vini.ModelProject.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\Vini.ModelProject.Infra.Data\Vini.ModelProject.Infra.Data.csproj" />
+    <ProjectReference Include="..\Vini.ModelProject.Infra.Utils.Extensions\Vini.ModelProject.Infra.Utils.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,15 @@
     <Content Update="Views\Shared\Components\Conta\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_Localização.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Conta\Login.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

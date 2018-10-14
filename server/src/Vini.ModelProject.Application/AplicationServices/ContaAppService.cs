@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Vini.ModelProject.Application.Interfaces;
 using Vini.ModelProject.Application.ViewModels;
@@ -72,7 +73,7 @@ namespace Vini.ModelProject.Application.AplicationServices
         public async Task<string> ObterNomeDoUsuárioPorUserNameAsync(string userName)
         {
             var user = await _contaIdentityService.FindByNameAsync(userName);
-            return (await this._usuárioService.ObterPorIdAsync(Guid.Parse(user.Id)));
+            return (await this._usuárioService.ObterPorIdAsync(Guid.Parse(user.Id))).Nome;
         }
 
         public async Task LogoutAsync()
@@ -82,6 +83,15 @@ namespace Vini.ModelProject.Application.AplicationServices
         {
             var usuários = await _usuárioService.ListarTodosAsync();
             return usuários.Select(u => new ListarViewModel { Id = u.Id, Nome = u.Nome, CriadoEm = u.CriadoEm });
+        }
+
+        public bool UsuárioEstáLogado(ClaimsPrincipal userClaimsPrincipal)
+            => _contaIdentityService.IsUserAuthenticated(userClaimsPrincipal);
+
+        public async Task<string> ObterNomeDoUsuárioLogadoAsync(ClaimsPrincipal userClaimsPrincipal)
+        {
+            var userId = _contaIdentityService.GetUserId(userClaimsPrincipal);
+            return (await _usuárioService.ObterPorIdAsync(new Guid(userId))).Nome;
         }
     }
 }

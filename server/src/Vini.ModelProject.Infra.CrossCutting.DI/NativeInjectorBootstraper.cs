@@ -33,6 +33,10 @@ namespace Vini.ModelProject.Infra.CrossCutting.DI
         private static void RegisterIdentityServices(IServiceCollection services)
         {
             services.AddTransient<IContaIdentityService, ContaIdentityService>();
+
+            //services.AddScoped<Microsoft.AspNetCore.Identity.IdentityUser, Identity.Models.UsuárioIdentity> ();
+            //services.AddScoped<Vini.ModelProject.Infra.CrossCutting.Identity.Data.IdentityDbContext>();
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Vini.ModelProject.Infra.Utils
+namespace Vini.ModelProject.Infra.Utils.Extensions
 {
     public static class StringEx
     {
