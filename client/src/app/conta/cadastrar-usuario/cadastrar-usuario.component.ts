@@ -28,7 +28,7 @@ export class CadastrarUsuarioComponent implements AfterViewInit {
       this.genericValidator = new GenericValidator({
       nome: {
         required: 'O nome é obrigatório',
-        maxLength: 'O nome não pode conter mais de 30 caracteres',
+        maxlength: 'O nome não pode conter mais de 30 caracteres',
       },
       senha: {
         required: 'A senha é obrigatória',

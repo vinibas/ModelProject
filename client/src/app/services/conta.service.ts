@@ -13,7 +13,7 @@ import { AuthenticationService } from '../membership/authentication.service';
 
 @Injectable()
 export class ContaService {
-  private urlService = 'https://localhost:44367/api/conta/';
+  private urlService = 'http://localhost:6525/api/conta/';
 
   private get options(): RequestOptions {
     const headers = new Headers({ 'Content-Type': 'application/json' });
