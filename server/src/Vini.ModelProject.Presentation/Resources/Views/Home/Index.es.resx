@@ -123,8 +123,8 @@
   <data name="Autenticação com ASP.NET Identity" xml:space="preserve">
     <value>Autenticación con ASP.NET Identity</value>
   </data>
-  <data name="Bem-vindo ao ProjetoSimples!" xml:space="preserve">
-    <value>Bienvenido al ProjetoSimples!</value>
+  <data name="Bem-vindo ao ModelProject!" xml:space="preserve">
+    <value>Bienvenido al ModelProject!</value>
   </data>
   <data name="Cadastro de usuários" xml:space="preserve">
     <value>Registro de usuarios</value>
