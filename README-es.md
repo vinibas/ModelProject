@@ -3,14 +3,14 @@
 He creado este proyecto como una pequeña demostración de mi codificación.
 Es una forma de demostrar tanto mi estilo como parte de mis conocimientos de forma práctica.
 
-Creé una versión inicial utilizando sólo un proyecto con una arquitectura sencilla. Si lo deseas, puedes conferirlo en el branch "ProjetoSimples".
+Creé una versión inicial utilizando sólo un proyecto con una arquitectura sencilla. Si lo deseas, puedes verlo en el branch "ProjetoSimples".
 La versión actual poseé una mejor división en capas, que aunque sea un overengineering, representa mejor un sistema corporativo real.
-Como mejorías futuras, tengo la pretensión de implementar aún pruebas de unidad e interfaz, más funcionalidad y uso de otras tecnologías.
+Como mejoras futuras, tengo la pretensión de implementar aún pruebas de unidad e interfaz, más funcionalidades y uso de otras tecnologías.
 
 ## SPA (Angular) & MPA (Asp.net MVC)
 
 El ModelProject actualmente poseé dos diferentes formas de implementación front-end similares: Asp.net MVC y Angular.
-Puede ser que un proyeto tenga funcionalidade que el otro todavía no posee. Estoy actualizando e evolucionando ambos a los pocos.
+Puede ser que un proyeto tenga funcionalidade que el otro todavía no posee. Estoy actualizando y evolucionando ambos a los pocos.
 
 ## Tecnologías implementadas
 
