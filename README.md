@@ -35,6 +35,16 @@ Nessa primeira versão, foquei em demonstrar algumas funcionalidades. Seguem ela
 * Validação de campos
 * Internacionalização
 
+## Instalação
+
+Para executar a aplicação, é necessário antes gerar o Banco de Dados. Para isso, abra o "Console de Gerenciador de Pacotes" e execute os seguintes passos:
+1. Selecione o projeto Vini.ModelProject.Infra.Data como projeto padrão
+2. Execute o comando: Update-Database -Context ModelProjectContext
+3. Selecione o projeto Vini.ModelProject.Infra.CrossCutting.Identity como projeto padrão
+4. Execute o comando: Update-Database -Context IdentityDbContext
+
+Para executar o projeto Angular, é necessário também instalar todas as dependências. Para isso, não esqueça de executar um "npm install" na pasta client.
+
 ### Contato e melhorias
 
 Para maiores informações, pode me enviar uma mensagem ou me contactar também pelo [Linkedin](https://www.linkedin.com/in/vinicius-bastos/)
