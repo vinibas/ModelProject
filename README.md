@@ -7,10 +7,6 @@ Criei uma versão inicial utilizando apenas um projeto com uma arquitetura simpl
 A versão atual possui uma melhor divisão em camadas, que embora seja um overengineering, representa melhor um sistema corporativo real.
 Como melhorias futuras, pretendo implementar ainda testes de unidade e de interface, mais funcionalidades e uso de outras tecnologias.
 
-## Desenvolvimento atual
-
-A versão que se encontra atualmente em Master foi uma versão que criei de forma simplista: tudo em um único projeto, poucas classes, fazendo jus ao nome. Atualmente estou desenvolvendo uma nova versão, com separação em camadas, seguindo o DDD, como se fosse para um projeto maior. A versão ainda não está pronta, mas se quiser conferir o andamento, veja o Branch SeparandoEmProjetos.
-
 ## SPA (Angular) & MPA (Asp.net MVC)
 
 O ModelProject atualmente possui duas diferentes formas de implementação front-end similares: Asp.net MVC e Angular.
