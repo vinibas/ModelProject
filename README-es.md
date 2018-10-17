@@ -7,10 +7,6 @@ Creé una versión inicial utilizando sólo un proyecto con una arquitectura sen
 La versión actual poseé una mejor división en capas, que aunque sea un overengineering, representa mejor un sistema corporativo real.
 Como mejoras futuras, tengo la pretensión de implementar aún pruebas de unidad e interfaz, más funcionalidades y uso de otras tecnologías.
 
-## Desarrollo actual
-
-La versión que se encuentra actualmente en Master fue una versión que he creado de forma simplista: todo en un único proyecto, pocas clases, haciendo honor al nombre. Actualmente, estoy desarrollando una nueva versión, con separación en capas, siguiendo el DDD, como si fuera para un proyecto más grande. La versión todavía no está lista, pero si deseas consultar el estado, vea el Branch SeparandoEmProjetos.
-
 ## SPA (Angular) & MPA (Asp.net MVC)
 
 El ModelProject actualmente poseé dos diferentes formas de implementación front-end similares: Asp.net MVC y Angular.
@@ -49,7 +45,7 @@ Para ejecutar la aplicación, es necesário antes generar la Base de Datos. Para
 3. Seleccione el proyecto Vini.ModelProject.Infra.CrossCutting.Identity como proyecto predeterminado
 4. Ejecute el comando: Update-Database -Context IdentityDbContext
 
-Para ejecutar el proyecto Angular, es necesário también instalar todas las dependencias. Para eso, no olvides de ejecutar un "npm install" en la carpeta client. 
+Para ejecutar el proyecto Angular, es necesário también instalar todas las dependencias. Para eso, no olvides de ejecutar un "npm install" en la carpeta client.
 
 ### Contacto y mejoras
 
